@@ -1,0 +1,103 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="420" d:DesignHeight="280"
+        x:Class="SoundpadLightFINAL.Views.LoginWindow"
+        Height="700"
+        Width="1000"
+        WindowStartupLocation="CenterScreen"
+        Icon="avares://SoundpadLightFINAL/Images/SoundpadLightIco.ico"
+        Title="">
+
+  <Border CornerRadius="0,0,10,10"
+          BorderThickness="1"
+          BorderBrush="{StaticResource BrushPrimaryRedDark}"
+          Background="{StaticResource BrushAccentDarkGray}"
+          Padding="16">
+
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,*"
+          ColumnDefinitions="*">
+
+      <!-- Верхняя панель с иконкой и названием -->
+      <Grid Grid.Row="0" Margin="0,0,0,16">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Image Grid.Column="0"
+               Source="avares://SoundpadLightFINAL/Images/SoundpadLightIcon.png"
+               Width="32" Height="32"
+               Margin="0,0,8,0"/>
+
+        <StackPanel Grid.Column="1">
+          <TextBlock Text="Soundpad Light"
+                     FontSize="20"
+                     FontWeight="Bold"/>
+          <TextBlock Text="Sign in to your account"
+                     Foreground="{StaticResource BrushAccentLightGray}"
+                     FontSize="12"/>
+        </StackPanel>
+      </Grid>
+
+      <!-- Username -->
+      <StackPanel Grid.Row="1" Margin="0,0,0,8">
+        <TextBlock Text="USERNAME"
+                   FontSize="11"
+                   Foreground="{StaticResource BrushAccentLightGray}"
+                   Margin="0,0,0,2"/>
+        <TextBox x:Name="UsernameTextBox"
+                 Watermark="Enter your username"/>
+      </StackPanel>
+
+      <!-- Password -->
+      <StackPanel Grid.Row="2" Margin="0,0,0,4">
+        <TextBlock Text="PASSWORD"
+                   FontSize="11"
+                   Foreground="{StaticResource BrushAccentLightGray}"
+                   Margin="0,0,0,2"/>
+        <TextBox x:Name="PasswordTextBox"
+                 PasswordChar="●"
+                 Watermark="Enter your password"/>
+      </StackPanel>
+
+      <!-- Error text -->
+      <TextBlock Grid.Row="3"
+                 x:Name="ErrorTextBlock"
+                 Foreground="{StaticResource BrushErrorRed}"
+                 Margin="0,4,0,0"
+                 TextWrapping="Wrap"/>
+
+      <!-- Кнопки Login / Register -->
+      <Grid Grid.Row="4" Margin="0,16,0,0" VerticalAlignment="Bottom">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Column="0"
+                   Text="Don't have an account?"
+                   VerticalAlignment="Center"
+                   Foreground="{StaticResource BrushAccentLightGray}"/>
+
+        <StackPanel Grid.Column="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+          <Button x:Name="LoginButton"
+                  Content="Login"
+                  Width="90"
+                  Margin="0,0,8,0"/>
+          <Button x:Name="RegisterButton"
+                  Content="Register"
+                  Width="90"
+                  Background="Transparent"
+                  BorderBrush="{StaticResource BrushPrimaryRed}"
+                  Foreground="{StaticResource BrushPrimaryRed}"/>
+        </StackPanel>
+      </Grid>
+    </Grid>
+  </Border>
+</Window>
+
+

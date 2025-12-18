@@ -1,0 +1,194 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="SoundpadLightFINAL.Views.MainWindow"
+        Title=""
+        Height="700"
+        Width="1000"
+        Background="{StaticResource BrushAccentBlack}"
+        WindowStartupLocation="CenterScreen"
+        Icon="avares://SoundpadLightFINAL/Images/SoundpadLightIcon.png">
+
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- HEADER -->
+        <Border Grid.Row="0"
+                Background="{StaticResource BrushAccentDarkGray}"
+                BorderThickness="0,0,0,1"
+                Padding="10">
+            <Grid ColumnDefinitions="Auto,*,Auto">
+
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="avares://SoundpadLightFINAL/Images/SoundpadLightIcon.png"
+                           Width="28" Height="28" Margin="0,0,8,0"/>
+                    <StackPanel>
+                        <TextBlock Text="Soundpad Light"
+                                   FontSize="18"
+                                   FontWeight="Bold"/>
+                        <TextBlock Text="Lightweight soundboard"
+                                   FontSize="11"
+                                   Foreground="{StaticResource BrushAccentLightGray}"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center">
+                    <TextBlock Text="Logged in as:"
+                               Margin="0,0,4,0"
+                               Foreground="{StaticResource BrushAccentLightGray}"/>
+                    <TextBlock x:Name="UsernameTextBlock"
+                               FontWeight="Bold"
+                               Cursor="Hand"
+                               TextDecorations="Underline"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- CONTENT -->
+        <Border Grid.Row="1"
+                Margin="10"
+                CornerRadius="8"
+                Background="{StaticResource BrushAccentDarkGray}">
+            <Grid ColumnDefinitions="220,*"
+                  Margin="10">
+
+                <!-- PLAYLISTS -->
+                <Border Grid.Column="0"
+                        Margin="0,0,10,0"
+                        Background="{StaticResource BrushAccentBlack}"
+                        CornerRadius="6">
+                    <Grid RowDefinitions="Auto,*,Auto">
+
+                        <TextBlock Text="PLAYLISTS"
+                                   Margin="10"
+                                   FontSize="11"
+                                   Foreground="{StaticResource BrushAccentLightGray}"/>
+
+                        <ListBox x:Name="PlaylistListBox"
+                                 Grid.Row="1"
+                                 Margin="10"
+                                 Background="{StaticResource BrushAccentDarkGray}"/>
+
+                        <StackPanel Grid.Row="2"
+                                    Orientation="Horizontal"
+                                    Margin="10">
+                            <Button x:Name="AddPlaylistButton"
+                                    Content="+"
+                                    Width="32"
+                                    Margin="0,0,6,0"/>
+                            <Button x:Name="RenamePlaylistButton"
+                                    Content="Rename"
+                                    Width="80"
+                                    Margin="0,0,6,0"/>
+                            <Button x:Name="DeletePlaylistButton"
+                                    Content="Delete"
+                                    Width="70"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- SOUNDS -->
+                <Grid Grid.Column="1"
+                      RowDefinitions="Auto,Auto,*,Auto">
+
+                    <!-- INPUT -->
+                    <Grid ColumnDefinitions="2*,3*,Auto"
+                          Margin="0,0,0,10">
+                        <StackPanel Margin="0,0,10,0">
+                            <TextBlock Text="SOUND NAME"
+                                       FontSize="11"
+                                       Foreground="{StaticResource BrushAccentLightGray}"/>
+                            <TextBox x:Name="NameTextBox"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1"
+                                    Margin="0,0,10,0">
+                            <TextBlock Text="FILE PATH"
+                                       FontSize="11"
+                                       Foreground="{StaticResource BrushAccentLightGray}"/>
+                            <TextBox x:Name="PathTextBox"/>
+                        </StackPanel>
+
+                        <Button Grid.Column="2"
+                                Content="Browse..."
+                                Margin="0,18,0,0"
+                                x:Name="BrowseButton"/>
+                    </Grid>
+
+                    <!-- BUTTONS -->
+                    <StackPanel Grid.Row="1"
+                                Orientation="Horizontal"
+                                Margin="0,0,0,10">
+                        <Button x:Name="AddButton"
+                                Content="Add Sound"
+                                Width="110"
+                                Margin="0,0,10,0"/>
+                        <Button x:Name="DeleteButton"
+                                Content="Delete Selected"
+                                Width="130"
+                                Margin="0,0,10,0"/>
+
+                        <TextBlock Text="VOLUME"
+                                   VerticalAlignment="Center"
+                                   Foreground="{StaticResource BrushAccentLightGray}"
+                                   Margin="0,0,8,0"/>
+                        <Slider x:Name="VolumeSlider"
+                                Minimum="0"
+                                Maximum="100"
+                                Width="160"/>
+                    </StackPanel>
+
+                    <!-- TABLE -->
+                    <DataGrid Grid.Row="2"
+                              x:Name="SoundsDataGrid"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              SelectionMode="Single">
+                        <DataGrid.Columns>
+
+                            <!-- ▶️ / ⏹ -->
+                            <DataGridTemplateColumn Width="50">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="▶"
+                                                Width="32"
+                                                Height="32"
+                                                Tag="{Binding}"
+                                                Click="OnGridPlayClick"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTextColumn Header="Name"
+                                                Binding="{Binding Name}"
+                                                Width="2*"/>
+                            <DataGridTextColumn Header="File Path"
+                                                Binding="{Binding FilePath}"
+                                                Width="3*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <!-- TIMELINE -->
+                    <StackPanel Grid.Row="3"
+                                Orientation="Horizontal"
+                                Margin="0,10,0,0">
+                        <TextBlock x:Name="TimeText"
+                                   Width="90"
+                                   Text="00:00 / 00:00"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,10,0"
+                                   Foreground="{StaticResource BrushAccentLightGray}"/>
+                        <Slider x:Name="TimelineSlider"
+                                Width="300"
+                                Minimum="0"
+                                ValueChanged="OnTimelineChanged"/>
+                    </StackPanel>
+
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

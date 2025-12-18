@@ -1,0 +1,94 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="260"
+        x:Class="SoundpadLightFINAL.Views.RegisterWindow"
+        Background="{StaticResource BrushAccentBlack}"
+        WindowStartupLocation="CenterScreen"
+        SystemDecorations="None"
+        Height="400"
+        Width="400"
+        Title="">
+
+  <Border CornerRadius="10"
+          BorderThickness="1"
+          BorderBrush="{StaticResource BrushPrimaryRedDark}"
+          Background="{StaticResource BrushAccentDarkGray}"
+          Padding="16">
+
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,*"
+          ColumnDefinitions="*">
+
+      <!-- Верхняя панель с иконкой и заголовком -->
+      <Grid Grid.Row="0" Margin="0,0,0,16">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Image Grid.Column="0"
+               Source="avares://SoundpadLightFINAL/Images/SoundpadLightIcon.png"
+               Width="28" Height="28"
+               Margin="0,0,8,0"/>
+
+        <StackPanel Grid.Column="1">
+          <TextBlock Text="Create account"
+                     FontSize="18"
+                     FontWeight="Bold"/>
+          <TextBlock Text="Register to save your sounds"
+                     Foreground="{StaticResource BrushAccentLightGray}"
+                     FontSize="12"/>
+        </StackPanel>
+      </Grid>
+
+      <!-- Username -->
+      <StackPanel Grid.Row="1" Margin="0,0,0,8">
+        <TextBlock Text="USERNAME"
+                   FontSize="11"
+                   Foreground="{StaticResource BrushAccentLightGray}"
+                   Margin="0,0,0,2"/>
+        <TextBox x:Name="UsernameTextBox"
+                 Watermark="Choose username"/>
+      </StackPanel>
+
+      <!-- Password -->
+      <StackPanel Grid.Row="2" Margin="0,0,0,4">
+        <TextBlock Text="PASSWORD"
+                   FontSize="11"
+                   Foreground="{StaticResource BrushAccentLightGray}"
+                   Margin="0,0,0,2"/>
+        <TextBox x:Name="PasswordTextBox"
+                 PasswordChar="●"
+                 Watermark="Choose password"/>
+      </StackPanel>
+
+      <!-- Error -->
+      <TextBlock Grid.Row="3"
+                 x:Name="ErrorTextBlock"
+                 Foreground="{StaticResource BrushErrorRed}"
+                 Margin="0,4,0,0"
+                 TextWrapping="Wrap"/>
+
+      <!-- Кнопки -->
+      <StackPanel Grid.Row="4"
+                  Margin="0,16,0,0"
+                  Orientation="Horizontal"
+                  HorizontalAlignment="Right"
+                  VerticalAlignment="Bottom">
+        <Button x:Name="CancelButton"
+                Content="Cancel"
+                Width="90"
+                Margin="0,0,8,0"
+                Background="Transparent"
+                BorderBrush="{StaticResource BrushAccentLightGray}"
+                Foreground="{StaticResource BrushAccentLightGray}"/>
+        <Button x:Name="RegisterButton"
+                Content="Create account"
+                Width="120"/>
+      </StackPanel>
+    </Grid>
+  </Border>
+</Window>
+
+
